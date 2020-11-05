@@ -20,11 +20,10 @@ class MovieManagerTest {
     MovieItem Pirates = new MovieItem(11, 3, "пираты", 200, 3);
 
 
-
-//    Добавляем фильмы и вызываем список фильмов проверяем метод getAll
+    //    Добавляем фильмы и вызываем список фильмов проверяем метод getAll
     @Test
     void add_getAll() {
-        MovieManager manager = new MovieManager();
+        MovieManager manager = new MovieManager(10);
 
 //        Добавляем фильмы
 
@@ -46,10 +45,10 @@ class MovieManagerTest {
 
     }
 
-    //    Проверяем если фильмов больше 10
+    // Проверяем если фильмов больше 10 то по умолчанию выводятся 10
     @Test
     void moreGetAll() {
-        MovieManager manager = new MovieManager();
+        MovieManager manager = new MovieManager(10);
 
         manager.add(Blatsot);
         manager.add(Vpered);
@@ -68,33 +67,26 @@ class MovieManagerTest {
         assertArrayEquals(actual, expected);
     }
 
-//     Проверяем если фильмов в списке столько сколько мы сами запросили
+    //    Проверяем если фильмов в списке столько сколько мы сами запросили
     @Test
     void getAllCount() {
-        MovieManager manager = new MovieManager();
+        MovieManager manager = new MovieManager(5);
 
         manager.add(Blatsot);
         manager.add(Vpered);
         manager.add(OtelBelgrad);
         manager.add(Gentlemen);
         manager.add(Nevidimka);
-        manager.add(Trolli);
-        manager.add(NomerOdin);
-        manager.add(Vedmak);
-        manager.add(Dovod);
-        manager.add(Prometey);
 
-
-        MovieItem[] actual = manager.getAll(5);
-        MovieItem[] expected = new MovieItem[]{Prometey, Dovod, Vedmak, NomerOdin, Trolli};
+        MovieItem[] actual = manager.getAll();
+        MovieItem[] expected = new MovieItem[]{Nevidimka, Gentlemen, OtelBelgrad, Vpered, Blatsot};
         assertArrayEquals(actual, expected);
-
     }
 
-//      Проверяем если фильмов в списке меньше чем запрошеннное количество
+    //      Проверяем если фильмов в списке меньше чем запрошеннное количество
     @Test
     void moreGetAllCount() {
-        MovieManager manager = new MovieManager();
+        MovieManager manager = new MovieManager(12);
 
         manager.add(Blatsot);
         manager.add(Vpered);
@@ -107,10 +99,8 @@ class MovieManagerTest {
         manager.add(Dovod);
         manager.add(Prometey);
 
-
-        MovieItem[] actual = manager.getAll(12);
+        MovieItem[] actual = manager.getAll();
         MovieItem[] expected = new MovieItem[]{Prometey, Dovod, Vedmak, NomerOdin, Trolli, Nevidimka, Gentlemen, OtelBelgrad, Vpered, Blatsot};
         assertArrayEquals(actual, expected);
     }
-
-    }
+}
