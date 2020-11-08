@@ -23,7 +23,7 @@ class MovieManagerTest {
     //    Добавляем фильмы и вызываем список фильмов проверяем метод getAll
     @Test
     void add_getAll() {
-        MovieManager manager = new MovieManager(10);
+        MovieManager manager = new MovieManager();
 
 //        Добавляем фильмы
 
@@ -45,6 +45,9 @@ class MovieManagerTest {
 
     }
 
+    // вызвать конструктор без параментров и проверить возврат меньшего количества и большего количества -2 теста
+
+
     // Проверяем если фильмов больше 10 то по умолчанию выводятся 10
     @Test
     void moreGetAll() {
@@ -60,10 +63,10 @@ class MovieManagerTest {
         manager.add(Vedmak);
         manager.add(Dovod);
         manager.add(Prometey);
-        manager.add(Pirates);
+
 
         MovieItem[] actual = manager.getAll();
-        MovieItem[] expected = new MovieItem[]{Pirates, Prometey, Dovod, Vedmak, NomerOdin, Trolli, Nevidimka, Gentlemen, OtelBelgrad, Vpered};
+        MovieItem[] expected = new MovieItem[]{Prometey, Dovod, Vedmak, NomerOdin, Trolli, Nevidimka, Gentlemen, OtelBelgrad, Vpered, Blatsot};
         assertArrayEquals(actual, expected);
     }
 
@@ -104,3 +107,4 @@ class MovieManagerTest {
         assertArrayEquals(actual, expected);
     }
 }
+

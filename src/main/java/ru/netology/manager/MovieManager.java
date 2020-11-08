@@ -4,10 +4,14 @@ import ru.netology.domain.MovieItem;
 
 public class MovieManager {
     private MovieItem[] items = new MovieItem[0];
-    private int itemsToReturn = 10;
+    private int itemsToReturn;
 
     public MovieManager (int itemsToReturn){
         this.itemsToReturn = itemsToReturn;
+    }
+
+    public MovieManager (){
+        itemsToReturn = 10;
     }
 
     public void add(MovieItem item) {
@@ -22,7 +26,7 @@ public class MovieManager {
     public MovieItem[] getAll() {
         int countMovies = items.length;
         if (countMovies > itemsToReturn) {
-            MovieItem[] result = new MovieItem[10];
+            MovieItem[] result = new MovieItem[itemsToReturn];
             for (int i = 0; i < itemsToReturn; i++) {
                 int index = items.length - i - 1;
                 result[i] = items[index];
