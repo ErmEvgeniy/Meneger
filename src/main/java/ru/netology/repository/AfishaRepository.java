@@ -14,22 +14,19 @@ public class AfishaRepository {
         items = tmp;
     }
 
-    public MovieItem[] findAll () {
+    public MovieItem[] findAll() {
         return items;
     }
 
 
-    public MovieItem[] findById (int idMovie) {
-        int length = items.length;
-        MovieItem[] tmp = new MovieItem[length];
-        int index = 0;
+    public MovieItem findById(int idMovie) {
         for (MovieItem item : items) {
-            if (item.getIdMovie() != idMovie) {
-                tmp[index] = item;
-            }
+        if (item.getIdMovie() == idMovie){
+            return item;
         }
-        return tmp;
     }
+        return null;
+}
 
     public void removeById (int idMovie){
         int length = items.length - 1;
@@ -44,9 +41,7 @@ public class AfishaRepository {
         items = tmp;
     }
 
-    public int removeAll (){
-        int length = 0;
-        return length;
-
+    public void  removeAll (){
+        items = new MovieItem[0];
     }
 }
