@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import ru.netology.domain.MovieItem;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AfishaRepositoryTest {
     AfishaRepository repository = new AfishaRepository ();
@@ -23,9 +24,6 @@ class AfishaRepositoryTest {
 
     @Test
     void save() {
-        //MovieItem manager = new MovieItem();
-
-//        Добавляем фильмы
 
         repository.save(Blatsot);
         repository.save(Vpered);
@@ -43,40 +41,44 @@ class AfishaRepositoryTest {
     }
 
     @Test
-    void findAll() {
-        repository.save(Blatsot);
-        repository.save(Vpered);
-        repository.save(OtelBelgrad);
-        repository.save(Gentlemen);
-        repository.save(Nevidimka);
-        repository.save(Trolli);
-        repository.save(NomerOdin);
-        repository.save(Vedmak);
-        repository.save(Dovod);
-        repository.save(Prometey);
-
-        MovieItem[] actual = repository.findAll();
-        MovieItem[] expected = new MovieItem[]{Blatsot, Vpered, OtelBelgrad, Gentlemen, Nevidimka,Trolli, NomerOdin,Vedmak, Dovod, Prometey};
-        assertArrayEquals(actual, expected);
-    }
-
-    @Test
     void findById () {
         repository.save(Blatsot);
         repository.save(Vpered);
         repository.save(OtelBelgrad);
-        repository.save(Gentlemen);
-        repository.save(Nevidimka);
-        repository.save(Trolli);
-        repository.save(NomerOdin);
-        repository.save(Vedmak);
-        repository.save(Dovod);
-        repository.save(Prometey);
+        
+        MovieItem actual = repository.findById(3);
 
-        //находит фильм но не сравнивает с  expected
-        MovieItem actual = repository.findById(5);
-        MovieItem[] expected = new MovieItem[]{Nevidimka};
+        assertEquals(actual.getIdMovie(),OtelBelgrad.getIdMovie());
+        assertEquals(actual.getMovieName(),OtelBelgrad.getMovieName());
+        assertEquals(actual.getMovieNumber(),OtelBelgrad.getMovieNumber());
+        assertEquals(actual.getMoviePrice(),OtelBelgrad.getMoviePrice());
+        assertEquals(actual.getCount(),OtelBelgrad.getCount());
+    }
+
+    @Test
+    void removeById () {
+        repository.save(Blatsot);
+        repository.save(Vpered);
+        repository.save(OtelBelgrad);
+
+        repository.removeById(2);
+
+        MovieItem[] actual = repository.findAll();
+        MovieItem[] expected = new MovieItem[]{Blatsot, OtelBelgrad};
+        assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    void removeAll (){
+        repository.save(Blatsot);
+        repository.save(Vpered);
+        repository.save(OtelBelgrad);
+
+        repository.removeAll();
+        MovieItem[] actual = repository.findAll();
+        MovieItem[] expected = new MovieItem[]{};
         assertArrayEquals(actual, expected);
 
     }
 }
+

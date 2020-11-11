@@ -16,8 +16,8 @@ import static org.mockito.Mockito.*;
 public class AfishaManagerTest {
     @Mock
     private AfishaRepository repository;
-    @InjectMocks
 
+    @InjectMocks
     private AfishaManager manager;
     private MovieItem Blatsot = new MovieItem(1, 1, "блатшот", 500, 1);
     private MovieItem Vpered = new MovieItem(2, 2, "вперед", 500, 2);
@@ -31,71 +31,43 @@ public class AfishaManagerTest {
     private MovieItem Prometey = new MovieItem(10, 5, "прометей", 600, 1);
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         manager.add(Blatsot);
         manager.add(Vpered);
         manager.add(OtelBelgrad);
-//        manager.add(Gentlemen);
-//        manager.add(Nevidimka);
-//        manager.add(Trolli);
-//        manager.add(NomerOdin);
-//        manager.add(Vedmak);
-//        manager.add(Dovod);
-//        manager.add(Prometey);
     }
 
     @Test
-    public void shouldRemoveIfExists() {
-        int idToRemove = 1;
-        // настройка заглушки
-        MovieItem[] returned = new MovieItem[]{Vpered,OtelBelgrad};
-        doReturn(returned).when(repository).findAll();
-        doNothing().when(repository).removeById(idToRemove);
+    public void addAndGetall() {
 
-        manager.removeById(idToRemove);
+        MovieItem[] returned = new MovieItem[]{Vpered, OtelBelgrad};
+        doReturn(returned).when(repository).findAll();
+
         MovieItem[] expected = new MovieItem[]{OtelBelgrad, Vpered};
         MovieItem[] actual = manager.getAll();
         assertArrayEquals(expected, actual);
-
-        verify(repository).removeById(idToRemove);
-    }
-
-    @Test
-    public void shouldNotRemoveIfNotExists() {
-        int idToRemove = 4;
-        MovieItem[] returned = new MovieItem[]{Blatsot,OtelBelgrad, Vpered};
-        doReturn(returned).when(repository).findAll();
-        doNothing().when(repository).removeById(idToRemove);
-
-        manager.removeById(idToRemove);
-        MovieItem[] expected = new MovieItem[]{Vpered, OtelBelgrad,Blatsot};
-        MovieItem[] actual = manager.getAll();
-
-        assertArrayEquals(expected, actual);
-        verify(repository).removeById(idToRemove);
         verify(repository).findAll();
-    }
-    @Test
-    void add_getAll() {
-        AfishaManager manager = new AfishaManager(repository);
-
-//        Добавляем фильмы
-
-        manager.add(Blatsot);
-        manager.add(Vpered);
-        manager.add(OtelBelgrad);
-        manager.add(Gentlemen);
-        manager.add(Nevidimka);
-        manager.add(Trolli);
-        manager.add(NomerOdin);
-        manager.add(Vedmak);
-        manager.add(Dovod);
-        manager.add(Prometey);
-
-//        Не вызываеся список фильмов - метод getAll
-//        MovieItem[] actual = manager.getAll();
-//        MovieItem[] expected = new MovieItem[]{Prometey, Dovod, Vedmak, NomerOdin, Trolli, Nevidimka, Gentlemen, OtelBelgrad, Vpered, Blatsot};
-//        assertArrayEquals(actual, expected);
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,6 +13,7 @@ public class AfishaManager {
     public void add(MovieItem item) {
         repository.save(item);
     }
+
     public MovieItem[] getAll() {
         MovieItem[] items = repository.findAll();
         MovieItem[] result = new MovieItem[items.length];
@@ -21,9 +22,6 @@ public class AfishaManager {
             result[i] = items[index];
         }
         return result;
-    }
-    public void removeById(int id) {
-        repository.removeById(id);
     }
 }
 
