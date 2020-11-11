@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class MovieItem {
     private int idMovie;
-    private int movie;
+    private int movieNumber;
     private String movieName;
     private int moviePrice;
     private int count;
