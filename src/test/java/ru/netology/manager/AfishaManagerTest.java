@@ -29,12 +29,17 @@ public class AfishaManagerTest {
     private MovieItem Vedmak = new MovieItem(8, 3, "ведьмак", 400, 1);
     private MovieItem Dovod = new MovieItem(9, 4, "довод", 100, 1);
     private MovieItem Prometey = new MovieItem(10, 5, "прометей", 600, 1);
+    private MovieItem Pirates = new MovieItem(11, 3, "пираты", 200, 3);
 
     @BeforeEach
     public void setUp() {
         manager.add(Blatsot);
         manager.add(Vpered);
         manager.add(OtelBelgrad);
+        manager.add(Gentlemen);
+        manager.add(Nevidimka);
+        manager.add(Trolli);
+
     }
 
     @Test
@@ -47,7 +52,18 @@ public class AfishaManagerTest {
         MovieItem[] actual = manager.getAll();
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
+    }
 
+    @Test
+    public void addAndGetallWithLimit() {
+
+        MovieItem[] returned = new MovieItem[]{Blatsot, Vpered, OtelBelgrad, Gentlemen, Nevidimka, Trolli, NomerOdin, Vedmak, Dovod, Prometey, Pirates};
+        doReturn(returned).when(repository).findAll();
+
+        MovieItem[] expected = new MovieItem[]{Pirates, Prometey, Dovod, Vedmak, NomerOdin, Trolli, Nevidimka, Gentlemen, OtelBelgrad, Vpered};
+        MovieItem[] actual = manager.getAll();
+        assertArrayEquals(expected, actual);
+        verify(repository).findAll();
     }
 }
 

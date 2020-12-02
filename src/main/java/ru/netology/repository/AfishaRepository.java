@@ -4,6 +4,15 @@ import ru.netology.domain.MovieItem;
 
 public class AfishaRepository {
     private MovieItem[] items = new MovieItem[0];
+    private int itemsToReturn;
+
+    public AfishaRepository (int itemsToReturn) {
+        this.itemsToReturn = itemsToReturn;
+    }
+
+    public AfishaRepository (){
+        itemsToReturn = 10;
+    }
 
     public void save(MovieItem item) {
         int length = items.length + 1;
@@ -17,7 +26,6 @@ public class AfishaRepository {
     public MovieItem[] findAll() {
         return items;
     }
-
 
     public MovieItem findById(int idMovie) {
         for (MovieItem item : items) {
